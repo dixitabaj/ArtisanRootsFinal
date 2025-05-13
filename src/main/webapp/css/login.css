@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+body {
+	background: url('../resource/images/system/login.png') no-repeat center center fixed;
+	background-size: cover;
+	display: flex;
+	text-decoration:none;
+}
+
+.form-container {
+	background-color:rgb(227, 220, 210);
+	position: absolute;
+	right: 120px;
+	padding: 40px;
+	border-radius: 45px;
+	width: 400px;
+	height: 500px;
+	box-shadow: 10 10 15px rgba(0, 0, 0, 0.2);
+	margin-top: 50px;
+}
+
+h2 {
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.email, .password {
+	width: 370px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px; /* Ensures padding and borders are included in the width */
+}
+
+.options {
+	display: flex;
+	justify-content: space-between;
+	font-size: 14px;
+	margin-bottom: 15px;
+}
+
+.options .forgot {
+	color: red;
+	text-decoration: none;
+}
+
+.login-btn {
+	width: 400px;
+	padding: 12px;
+	background-color: #000;
+	color: white;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-top: 40px;
+}
+
+.login-btn:hover{
+	background-color:#272727;
+}
+
+
+.divider {
+	text-align: center;
+	margin: 20px 0;
+	color: #555;
+	font-size: 14px;
+}
+
+.social-icons {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	margin-bottom: 15px;
+}
+
+.signup {
+	text-align: center;
+	font-size: 14px;
+}
+
+.signup a {
+	font-weight: bold;
+	text-decoration: none;
+	color: #000;
+}
+
+.login {
+	margin-top: 60px;
+}
+
+.social-icon:hover {
+	transform: scale(1.1); /* Enlarge icons on hover */
+}
+.error{
+	    font-size: 12px;
+    display: block;
+    color: red;
+    margin-bottom: 10px;
+}

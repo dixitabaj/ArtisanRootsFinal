@@ -1,0 +1,220 @@
+@charset "UTF-8";
+    body {
+      font-family: Poppins, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+}
+p, a, nav, .accordion-content {
+  font-family: 'Poppins', sans-serif;
+}
+    header {
+      background: #fff;
+      padding: 15px 30px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .main-section {
+      
+      width: 1200px;
+      height: 600px;
+      background-color: rgb(178, 185, 191);
+    }
+
+    .main-section img {
+      position: absolute;
+      right: 0%;
+      height: 600px;
+    }
+
+    .main-section p {
+      position: absolute;
+      left: 650px;
+      top:200px;
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 20px;
+      
+    }
+    
+
+    .intro {
+      background-image: url(bg.png);
+      position:  absolute;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      gap: 30px;
+      flex-wrap: wrap;
+      background-color: #fff;
+      left: 400px;
+      width: 600px;
+      top: 400px;
+    }
+
+  .intro h2{
+    margin-left: 250px;
+  }
+
+    .intro p {
+      font-size: 16px;
+      color: #555;
+      line-height:42px;
+    }
+
+    .team {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #f5f5f5;
+    }
+
+    .team h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .underline {
+      width: 50px;
+      height: 3px;
+      background: #333;
+      margin: 10px auto 40px;
+    }
+
+    .team-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .team-member {
+      background: #fff;
+      border-radius: 30px;
+      width: 200px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .team-member h4 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+    }
+
+     .role{
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .social-icons a {
+      color: #555;
+      margin: 0 8px;
+      font-size: 18px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #000;
+    }
+
+    @media (max-width: 768px) {
+      .intro {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    .customer-services {
+    display: flex;
+    padding: 80px;
+    justify-content: space-between;
+    gap: 50px;
+  }
+  .customer-services h2{
+    margin-bottom: 90px;
+  }
+  .content {
+    flex: 1;
+  }
+  
+  h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: #111;
+  }
+  
+  .accordion {
+    border-top: 1px solid #ccc;
+  }
+  
+  .accordion-item {
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .accordion-title {
+    display: block;
+    padding: 20px 0;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    color: #222;
+    text-transform: uppercase;
+    position: relative;
+  }
+  
+
+  
+  .accordion-content {
+    padding: 0 0 20px 0;
+    display: none;
+    font-size: 14px;
+    color: #444;
+  }
+  
+  input[type="checkbox"] {
+    display: none;
+  }
+  
+  input[type="checkbox"]:checked + .accordion-title + .accordion-content {
+    display: block;
+  }
+  
+  .image {
+    flex: 1;
+  }
+  
+  .image img {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    margin-left: 100px;
+  }
+  .our-gallery{
+    margin-top: 400px;
+  }
+  .our-gallery h2{
+    margin-left: 610px;
+  }
+  .bio{
+    color:  #95A5A6;
+    font-size: 14px;
+      margin-bottom: 15px;
+  }

@@ -1,0 +1,155 @@
+@charset "UTF-8";
+body {
+   background:  url("../resource/images/system/login.png") center fixed;
+   background-position: left center;
+    background-size: cover;
+    display: flex;
+  }
+
+   .heading p {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .registration-form {
+      display: flex;
+      height:200px;
+    }
+     .registration-form .row {
+      padding-bottom: 40px;
+      height:60px;
+    }
+
+    .registration-form label {
+      font-size: 14px;
+      font-weight: 600;
+      display:block;
+    }
+    .second-container label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    input {
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-top:6px;
+      width:230px;
+      height:18px;
+    }
+    
+    
+.second-container input{
+	 width:10px;
+      height:10px;
+      padding-top:10px;
+}
+
+.column{
+flex:1;
+}
+.column2{
+flex:1;
+}
+.second-container{
+	margin-top: 185px;
+}
+.login-form {
+    background-color: rgba(227, 220, 210, 0.85); 
+    position:absolute;
+    right:50px;
+    padding: 40px;
+    border-radius: 15px;
+    width: 500px;
+    height: 630px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin-top:30px;
+  }
+
+.login-form {
+    background-color: rgba(234, 229, 222, 0.85); /* slight transparency */
+    position:absolute;
+    right:50px;
+    padding: 40px;
+    border-radius: 15px;
+    width: 500px;
+    height: 630px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin-top:30px;
+  }
+      .login-form .register-button {
+      margin-left:15px;
+      width: 480px;  /* Set width to 200px */
+    height: 40px;  /* Adjust height to make it more clickable */
+    background-color: black;  /* Add a background color */
+    color: white;  /* White text color */
+    font-size: 16px;  /* Make the text more readable */
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;  /* Pointer cursor on hover */
+    display: inline-block;
+    margin-top:30px;
+  }
+  
+
+.error{
+	font-size:10px;
+	 min-height: 16px;
+	  display: block;
+	  color: red;
+}
+.sign-in-container{
+	
+	margin-top:10px;
+	margin-left:20px;
+}
+.sign-in-section{
+	text-align: center;
+	font-size: 14px;
+	text-decoration: none;
+	color: #000;
+	
+}
+.sign-in {
+	text-align: center;
+	font-size: 14px;
+}
+
+.sign-in {
+	
+	font-weight: bold;
+	text-decoration: none;
+	color: #000;
+}.gender-image-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 20px;
+flex-direction:row;
+}
+
+.gender-section,
+.image-section {
+  flex: 1;
+  width: 250px;
+}
+.image-section input[type="file"] {
+  font-size: 14px;
+  padding: 10px 12px;
+  background-color: #fdfdfd;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.image-section input[type="file"]:hover {
+  border-color: #999;
+  background-color: #f1f1f1;
+}
+
