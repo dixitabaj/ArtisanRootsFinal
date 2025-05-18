@@ -73,34 +73,42 @@ public class ImageUtil {
 	 *         otherwise.
 	 */
 	public static boolean uploadImage(Part part, ServletContext context) {
-		 String savePath = getSavePath(context);
-		    File fileSaveDir = new File(savePath);
+		String savePath = getSavePath(context);
+		File fileSaveDir = new File(savePath);
 
-		    // Ensure the directory exists
-		    if (!fileSaveDir.exists()) {
-		        if (!fileSaveDir.mkdirs()) { // Using mkdirs() to create directories if needed
-		            return false; // Failed to create the directory
-		        }
-		    }
+		// Ensure the directory exists
+		if (!fileSaveDir.exists()) {
+			if (!fileSaveDir.mkdirs()) { // Using mkdirs() to create directories if needed
+				return false; // Failed to create the directory
+			}
+		}
 
-		    try {
-		        // Get the image name
-		        String imageName = getImageNameFromPart(part);
-		        // Create the file path
-		        String filePath = savePath + "/" + imageName;
-		        System.out.println("Saving to: " + filePath); // Debugging log
+		try {
+			// Get the image name
+			String imageName = getImageNameFromPart(part);
+			// Create the file path
+			String filePath = savePath + "/" + imageName;
+			System.out.println("Saving to: " + filePath); // Debugging log
 
-		        // Write the file to the server
-		        part.write(filePath);
-		        return true; // Upload successful
-		    } catch (IOException e) {
-		        e.printStackTrace(); // Log the exception
-		        return false; // Upload failed
-		    }
+			// Write the file to the server
+			part.write(filePath);
+			return true; // Upload successful
+		} catch (IOException e) {
+			e.printStackTrace(); // Log the exception
+			return false; // Upload failed
+		}
 	}
-	
+
+	/**
+	 * Returns the absolute file system path where user images should be saved.
+	 * 
+	 * @param context the {@link ServletContext} of the web application, used to
+	 *                resolve the real path.
+	 * @return the absolute file system path as a {@link String} where images should
+	 *         be saved (e.g., "/var/www/myapp/resource/images/users").
+	 */
 	public static String getSavePath(ServletContext context) {
-	    return context.getRealPath("/resources/images/users");
+		return context.getRealPath("/resource/images/users");
 	}
 
 }

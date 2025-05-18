@@ -431,6 +431,37 @@ display: flex;
 	  display: block;
 	  color: red;
 }
+.displayMessage{
+    color: #155724;
+    float:right;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 16px;
+    width: 300px;
+    margin-top:-50px;
+    }
+    .search-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.no-products-msg {
+    color: #666;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.search-error {
+    color: red;
+    font-size: 12px;
+    margin-top: -20px;
+}
     </style>
     
 </head>
@@ -441,44 +472,27 @@ display: flex;
     
     <div class="main-content">
         <h1 class="page-title">Product Management</h1>
-       
-       <!--  <div class="stats-container">
-            <div class="stat-card">
-                <h3>Best Seller</h3>
-                <div class="product-name">Bowl</div>
-                <div class="product-stats">
-          3,434 sold 	&#183; 13,736 revenue
-      </div>
-            </div>
-            <div class="stat-card">
-                <h3>Total Stock</h3>
-                <div class="product-name">Bowl</div>
-                <div class="product-stats">
-          12 low 	&#183; 3 out
-      </div>
-            </div>
-            <div class="stat-card">
-                <h3>Items Sold</h3><div class="product-name">1200</div>
-                <div class="product-stats">
-         most sold category
-      </div>
-            </div> -->
-       <!--  </div> -->
-        
         <div class="product-table-container">
         <div class="table-header">
         
         <div class="product-info-table">
         <h2>Product Inventory</h2>
         </div>
-        <div class="search-container">
-        <form action="${pageContext.request.contextPath}/productmanage" method="get">
-           <div class="search-container1">
-                <img class="search-icon1" src="${pageContext.request.contextPath}/resource/images/system/search.png" alt="Search">
-                <input type="text" class="search-input1" placeholder="Search" name="searchItem" value="${param.searchItem}">
+        <div class="table-header">
+    
+    <div class="search-wrapper">
+        <form action="${pageContext.request.contextPath}/productmanage" method="get" >
+            <div class="search-container">
+             <span class="search-error">${searchError}</span>
+                <div class="search-container1">
+                    <img class="search-icon1" src="${pageContext.request.contextPath}/resource/images/system/search.png" alt="Search">
+                    <input type="text" class="search-input1" placeholder="Search" name="searchItem" value="${param.searchItem}">
+                </div>
             </div>
+           
         </form>
     </div>
+</div>
     </div>
             <table>
                 <thead>
@@ -524,7 +538,10 @@ display: flex;
         
         <div class="product-form">
             <h2>Product Information</h2>
-            <form action="${pageContext.request.contextPath}/productmanage" method="post">
+            <span class="displayMessage">${successProduct}</span>
+            <form action="${pageContext.request.contextPath}/productmanage" method="post" enctype="multipart/form-data">
+            
+            
             <div class="form-grid">
                 <div class="form-group">
                     <label for="product-code">Product Code</label>
@@ -589,6 +606,12 @@ display: flex;
                      <span class="error">${productStatusError}</span>
                 </div>
             </div>
+            <div class="image-section">
+  <label for="profile-picture" class="file-label">Profile Picture:</label>
+  <input type="hidden" name="existingImage" value="${image}">
+  
+  <input type="file" id="profile-picture" name="image" accept="image/*" class="styled-file-input" required>
+</div>
             <div class="form-actions">
                 <button class="btn btn-primary" type="Submit" name="action" value="add" >Add Product</button>
                 <button class="btn btn-secondary" type="Submit" name="action" value="update" >Update</button>

@@ -125,6 +125,41 @@
             justify-content: space-between;
             gap: 20px;
         }
+        .activities-card {
+    background-color: #f8f9fa; /* Light background */
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.activities-card h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.activity-item {
+    background-color: #ffffff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.activity-item:hover {
+    background-color: #e9f5ff;
+}
+
+.activity-type {
+    font-size: 14px;
+    color: #444;
+}
         
         .overview-card {
   flex: 1;
@@ -183,11 +218,11 @@
             <div class="left-column">
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <h3>💰 Current Revenue</h3>
+                        <h3>Current Revenue</h3>
                         <div class="value">${totalRevenue}</div>
                     </div>
                     <div class="stat-card">
-                        <h3>💰 Current Sales</h3>
+                        <h3>Current Sales</h3>
                         <div class="value">${totalSales}</div>
                     </div>
                     <div class="stat-card">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -122,59 +123,37 @@
 
   
 <section class="recommended-for-you">
- <div class="header1">
+<div class="header1" style="display: flex; justify-content: space-between; align-items: center;">
+  <div>
     <h2>RECOMMENDED</h2>
     <h2>FOR YOU</h2>
   </div>
+  <form action="home" method="get" style="margin: 0;">
+    <div class="search-container">
+             <span class="search-error">${searchError}</span>
+   <div class="search-container1">
+                    <img class="search-icon1" src="${pageContext.request.contextPath}/resource/images/system/search.png" alt="Search">
+                    <input type="text" class="search-input1" placeholder="Search" name="searchItem" value="${param.searchItem}">
+                </div>
+                </div>
+  </form>
+</div>
   <hr class="horizontal-line">
 <div class="card-container">
-    
-        <div class="card">
-          <img src="${pageContext.request.contextPath}/resource/images/system/image copy 4.png" alt="Product 1" />
+
+<c:forEach var="product" items="${recentProducts}">
+<div class="card"> 
+ <img src="${pageContext.request.contextPath}/resource/images/system/${product.imagePath}" alt="${product.productName}" />
           <div class="card-info">
-            <p class="product-name">INDIGO SCENT</p>
-            <p class="product-price">$59.99</p>
-            <p class="product-meta">⭐⭐⭐⭐☆ (4.5) · 1.2k sold</p>
-            <button class="add-cart-btn">Add to Cart</button>
-          </div>
-        </div>
-    
-        <div class="card">
-          <img src="${pageContext.request.contextPath}/resource/images/system/mostP.png" alt="Nordic Vase">
-          <div class="card-info">
-            <p class="product-name">NORDIC VASE</p>
-            <p class="product-price">Rs 12,900</p>
-            <p class="product-meta">⭐⭐⭐⭐ (4.2) · 3.5k sold</p>
-            <button class="add-cart-btn">Add to Cart</button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="${pageContext.request.contextPath}/resource/images/system/mostP2.png" alt="Product 1" />
-          <div class="card-info">
-            <p class="product-name">SAND AMPHOR</p>
-            <p class="product-price">Rs 8,999</p>
-            <p class="product-meta">⭐⭐⭐⭐☆ (4.5) · 1.2k sold</p>
-            <button class="add-cart-btn">Add to Cart</button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="${pageContext.request.contextPath}/resource/images/system/mostP1.png" alt="Product 1" />
-          <div class="card-info">
-            <p class="product-name">AQUA POT</p>
-            <p class="product-price">Rs. 6,999</p>
-            <p class="product-meta">⭐⭐⭐⭐☆ (4.5) · 1.2k sold</p>
-            <button class="add-cart-btn">Add to Cart</button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="${pageContext.request.contextPath}/resource/images/system/mostP3.png" alt="Product 1" />
-          <div class="card-info">
-            <p class="product-name">CERAMIC URN</p>
-            <p class="product-price">Rs. 5,999</p>
-            <p class="product-meta">⭐⭐⭐⭐☆ (4.5) · 1.2k sold</p>
-            <button class="add-cart-btn">Add to Cart</button>
-          </div>
-        </div>
+      
+        <p class="product-name">${product.productName}</p>
+        <p class="product-price">Rs. ${product.price}</p>
+        <p class="product-meta">⭐⭐⭐⭐☆ (4.5) · ${product.quantity} in stock</p>
+         <button class="add-cart-btn">Add to Cart</button>
+    </div>
+    </div>
+</c:forEach>
+
     
         <!-- Add more cards as needed -->
     

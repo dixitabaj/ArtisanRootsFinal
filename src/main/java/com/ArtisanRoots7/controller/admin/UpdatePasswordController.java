@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 import com.ArtisanRoots7.model.UserModel;
-import com.ArtisanRoots7.service.LoginService;
 import com.ArtisanRoots7.service.PortfolioService;
 import com.ArtisanRoots7.util.PasswordUtil;
 import com.ArtisanRoots7.util.ValidationUtil;
@@ -22,58 +21,103 @@ import com.ArtisanRoots7.util.ValidationUtil;
 public class UpdatePasswordController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Default constructor.
+     */
     public UpdatePasswordController() {
         super();
     }
 
+    /**
+     * Handles HTTP GET request to display the portfolio page.
+     *
+     * @param request  HttpServletRequest object
+     * @param response HttpServletResponse object
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an input or output error occurs
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("[GET] /updatepassword");
+
+        // Forward request to portfolio JSP page
         request.getRequestDispatcher("WEB-INF/pages/portfolio.jsp").forward(request, response);
     }
 
+    /**
+     * Handles HTTP POST request to process password update after validation.
+     *
+     * @param request  HttpServletRequest object
+     * @param response HttpServletResponse object
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException      if an input or output error occurs
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
         UserModel user = (UserModel) session.getAttribute("user");
 
-        // Get form parameters
+        // Retrieve form parameters
         String currentPassword = request.getParameter("currentPassword");
         String newPassword = request.getParameter("newPassword");
         String confirmPassword = request.getParameter("confirmPassword");
- 
-        // 1. Check if new passwords match
-        if (!newPassword.equals(confirmPassword)) {
-            request.setAttribute("confirmPasswordError", "New passwords don't match");
-            request.getRequestDispatcher("/WEB-INF/pages/portfolio.jsp").forward(request, response);
-            return;
-        }
 
-        // 2. Verify current password
+        // Decrypt stored password for validation
         String storedEncryptedPassword = user.getPassword();
         String decryptedPassword = PasswordUtil.decrypt(storedEncryptedPassword, user.getEmail());
 
+        // Validate current password correctness
         if (!ValidationUtil.matchesPassword(currentPassword, decryptedPassword)) {
-            request.setAttribute("newPasswordError", "Current password is incorrect");
+            request.setAttribute("enteredPassError", "Current password is incorrect");
+            request.setAttribute("activeTab", "password");
             request.getRequestDispatcher("/WEB-INF/pages/portfolio.jsp").forward(request, response);
             return;
         }
 
-        // 3. Encrypt and update new password
-        String newEncryptedPassword = PasswordUtil.encrypt(user.getEmail(), newPassword);
-        boolean updated = PortfolioService.updatePassword(user.getEmail(), newEncryptedPassword);
-
-        if (updated) {
-            // Update user in session
-        	String activeTab = request.getParameter("activeTab"); // should be "account"
-        	request.setAttribute("activeTab", activeTab);
-            user.setPassword(newEncryptedPassword);
-            session.setAttribute("user", user);
-            request.setAttribute("successMessage", "Password updated successfully");
+        // Prevent reusing the old password
+        if (currentPassword.equals(newPassword)) {
+            request.setAttribute("newPasswordError", "Your new password must be different from your old one");
+            request.setAttribute("activeTab", "password");
+            request.getRequestDispatcher("/WEB-INF/pages/portfolio.jsp").forward(request, response);
+            return;
         }
 
+        // Validate new password complexity
+        if (!ValidationUtil.isValidPassword(newPassword)) {
+            request.setAttribute("newPasswordError", "Password must contain at least one number, uppercase, lowercase and special character");
+            request.setAttribute("activeTab", "password");
+            request.getRequestDispatcher("/WEB-INF/pages/portfolio.jsp").forward(request, response);
+            return;
+        }
+
+        // Confirm new password and confirmation match
+        if (!newPassword.equals(confirmPassword)) {
+            request.setAttribute("confirmPasswordError", "New passwords don't match");
+            request.setAttribute("activeTab", "password");
+            request.getRequestDispatcher("/WEB-INF/pages/portfolio.jsp").forward(request, response);
+            return;
+        }
+
+        // Encrypt new password before updating
+        String newEncryptedPassword = PasswordUtil.encrypt(user.getEmail(), newPassword);
+
+        // Attempt to update password in database
+        boolean updated = PortfolioService.updatePassword(user.getEmail(), newEncryptedPassword);
+
+        // Always set the active tab for UI focus
+        request.setAttribute("activeTab", "password");
+
+        if (updated) {
+            // Update session user with new password on success
+            user.setPassword(newEncryptedPassword);
+            session.setAttribute("user", user);
+            request.setAttribute("successPassword", "Password updated successfully");
+        } else {
+            // Handle update failure
+            request.setAttribute("newPasswordError", "Failed to update password");
+        }
+
+        // Forward back to portfolio page
         request.getRequestDispatcher("WEB-INF/pages/portfolio.jsp").forward(request, response);
     }
 }
-
-

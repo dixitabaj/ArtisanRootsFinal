@@ -112,11 +112,11 @@
       <label for="gender">Gender</label><br>
 
       <input type="radio" id="male" value="male" name="gender" 
-             ${gender == 'male' ? 'checked' : ''} required>
+             ${gender == 'Male' ? 'checked' : ''} required>
       <label for="male">Male</label>
 
       <input type="radio" id="female" value="female" name="gender" 
-             ${gender == 'female' ? 'checked' : ''} required>
+             ${gender == 'Female' ? 'checked' : ''} required>
       <label for="female">Female</label>
 
       <input type="radio" id="other" value="other" name="gender" 
@@ -124,18 +124,18 @@
       <label for="other">Other</label>
     </div>
 <!--   <!-- Profile Picture Section -->
-    <div class="image-section">
-      <label for="image">Profile Picture:</label><br>
-      
-     <input type="file" id="profile-picture" name="image" class="file-input">
-    </div> 
-  
 
-  </div>
+  <!-- Profile Picture Section -->
+ <div class="image-section">
+  <label for="profile-picture" class="file-label">Profile Picture:</label>
+  <input type="hidden" name="existingImage" value="${image}">
+  
+  <input type="file" id="profile-picture" name="image" accept="image/*" class="styled-file-input" required>
+</div>
 </div>
 
 
-
+</div>
 
         
     <div class="row">

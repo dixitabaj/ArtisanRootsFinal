@@ -25,8 +25,8 @@
             <c:when test="${sessionScope.user.role == 'admin'}">
                 <a href="/ArtisanRoots7/dashboard">DASHBOARD</a>
                  <a href="/ArtisanRoots7/productmanage">PRODUCT MANAGEMENT</a>
-                <a href="/ArtisanRoots7/portfolio">PORTFOLIO</a>
                 <a href="/ArtisanRoots7/userManagement">USER MANAGEMENT</a>
+                <a href="/ArtisanRoots7/portfolio">PORTFOLIO</a>
             </c:when>
             
             <%-- Customer links (default) --%>
@@ -70,10 +70,9 @@
     String path = request.getContextPath() + profileImage;
                    
 %>
-<%-- <img src="/ArtisanRoots3/resource/images/system/<%= profileImage %>" 
-     alt="Profile" style="width: 40px; height: 40px; border-radius: 50%;"> --%>
-     <img src="/ArtisanRoots3/resource/images/system/profile4.png" style="width: 40px; height: 40px; border-radius: 50%";>
-    </div>
+<img src="${pageContext.request.contextPath}/resource/images/users/<%= profileImage %>" 
+     alt="Profile" style="width: 40px; height: 40px; border-radius: 50%;"> </div>
 </div>
+
 </body>
 </html>

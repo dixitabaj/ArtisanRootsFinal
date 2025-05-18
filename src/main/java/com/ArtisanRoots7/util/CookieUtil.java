@@ -1,6 +1,5 @@
 package com.ArtisanRoots7.util;
 
-
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,9 +21,16 @@ public class CookieUtil {
      * @param maxAge   the maximum age of the cookie in seconds
      */
     public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
+        // Create a new cookie with the given name and value
         Cookie cookie = new Cookie(name, value);
+
+        // Set the maximum age of the cookie (in seconds)
         cookie.setMaxAge(maxAge);
-        cookie.setPath("/"); // Make cookie available to the entire application
+
+        // Set path to root to make cookie accessible throughout the app
+        cookie.setPath("/");
+
+        // Add the cookie to the response
         response.addCookie(cookie);
     }
 
@@ -36,12 +42,15 @@ public class CookieUtil {
      * @return the Cookie object if found, otherwise null
      */
     public static Cookie getCookie(HttpServletRequest request, String name) {
+        // Check if cookies exist in the request
         if (request.getCookies() != null) {
+            // Search for a cookie with the matching name
             return Arrays.stream(request.getCookies())
                     .filter(cookie -> name.equals(cookie.getName()))
                     .findFirst()
-                    .orElse(null);
+                    .orElse(null); // Return null if not found
         }
+        // Return null if no cookies are present
         return null;
     }
 
@@ -52,9 +61,16 @@ public class CookieUtil {
      * @param name     the name of the cookie to delete
      */
     public static void deleteCookie(HttpServletResponse response, String name) {
+        // Create a new cookie with same name and null value
         Cookie cookie = new Cookie(name, null);
+
+        // Set max age to 0 to delete the cookie
         cookie.setMaxAge(0);
-        cookie.setPath("/"); // Make cookie available to the entire application
+
+        // Set path to root to ensure the correct cookie is deleted
+        cookie.setPath("/");
+
+        // Add the cookie to response to trigger deletion on client
         response.addCookie(cookie);
     }
 }

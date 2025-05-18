@@ -56,7 +56,7 @@
     </div>
     
     <div class="underline"></div>
-      <img src="${pageContext.request.contextPath}/resource/images/system/gallery.png" width="1400px">
+      <img src="${pageContext.request.contextPath}/resource/images/system/gallery.png" width="1423px">
    
   </section>
 

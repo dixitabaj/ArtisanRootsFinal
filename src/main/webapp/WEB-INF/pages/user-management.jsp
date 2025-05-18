@@ -15,6 +15,28 @@
             color: #333;
         }
     
+    .search-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.no-products-msg {
+    color: #666;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.search-error {
+    color: red;
+    font-size: 12px;
+    margin-top: -20px;
+}
         /* Navbar */
         .navbar {
             background-color: #3E2723;
@@ -388,6 +410,29 @@ display: flex;
     margin-bottom: 20px;
     flex-wrap: wrap; /* Allows items to wrap on small screens */
     gap: 15px;
+    }
+    .search-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.no-products-msg {
+    color: #666;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.search-error {
+    color: red;
+    font-size: 12px;
+    margin-top: -20px;
+}
     </style>
 </head>
 <body>
@@ -414,14 +459,18 @@ display: flex;
         <div class="user-table-container">
                 <div class="table-header">
          <div class="user-info-table">
-        <h2>Product Inventory</h2>
+        <h2>User Information</h2>
         </div>
-        <div class="search-container">
+         <div class="search-wrapper">
         <form action="${pageContext.request.contextPath}/userManagement" method="get">
-           <div class="search-container1">
-                <img class="search-icon1" src="${pageContext.request.contextPath}/resource/images/system/search.png" alt="Search">
-                <input type="text" class="search-input1" placeholder="Search" name="searchUser" value="${param.searchItem}">
+            <div class="search-container">
+             <span class="search-error">${searchUserError}</span>
+                <div class="search-container1">
+                    <img class="search-icon1" src="${pageContext.request.contextPath}/resource/images/system/search.png" alt="Search">
+                    <input type="text" class="search-input1" placeholder="Search" name="searchUser" value="${param.searchItem}">
+                </div>
             </div>
+           
         </form>
     </div>
     </div>

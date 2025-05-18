@@ -12,71 +12,8 @@
 <style>
 /* Gender Radio Button Styling */
 .gender-options {
-    display: flex;
-    gap: 20px;
-    margin-top: 8px;
-}
 
-.radio-container {
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding-left: 25px;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.radio-container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.radio-checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 18px;
-    width: 18px;
-    background-color: #fff;
-    border-radius: 50%;
-    border: 2px solid #8B5A2B;
-}
-
-.radio-container:hover input ~ .radio-checkmark {
-    background-color: #f1f1f1;
-}
-
-.radio-container input:checked ~ .radio-checkmark {
-    background-color: #fff;
-}
-
-.radio-checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-.radio-container input:checked ~ .radio-checkmark:after {
-    display: block;
-}
-
-.radio-container .radio-checkmark:after {
-    top: 3px;
-    left: 3px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #8B5A2B;
-}
-
-.radio-label {
-    margin-left: 5px;
-    color: #333;
-}</style>
+</style>
 </head>
 <body>
 
@@ -88,10 +25,10 @@
         <div class="profile-picture">
         <%
     String profileImage = (String) session.getAttribute("profileImage");
-    String path = request.getContextPath() + profileImage;
                    
 %>
-<img src="/ArtisanRoots3/resource/images/system/<%= profileImage %>" 
+
+<img src="${pageContext.request.contextPath}/resource/images/users/<%= profileImage %>" 
      alt="Profile" >
         </div>
         
@@ -103,6 +40,9 @@
             <p><strong>Date of Birth:</strong> <%= loggedInUser.getDob() %></p>
             <p><strong>Gender:</strong> <%= loggedInUser.getGender() %></p>
         </div>
+         <div class="form-actions">
+        <button type="submit" class="btn update-password-btn">Update Profile</button>
+    </div>
     </div>
 
     <!-- Form Section -->
@@ -122,11 +62,10 @@
     boolean showAccount = "account".equals(activeTab) || activeTab == null;
     boolean showPassword = "password".equals(activeTab);
 %>
-
-<div id="accountForm" class="form-content <%= showAccount ? "active" : "" %>">
+<div id="accountForm" class="form-content <%= ("account".equals(activeTab) || activeTab == null) ? "active" : "" %>">
 
             <form action="${pageContext.request.contextPath}/portfolio" method="post">
-
+<span class="displayMessage">${successMessage}</span>
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
@@ -153,6 +92,7 @@
                          <span class="error">${phoneNoError}</span>
                     </div>
 </div>
+
                     <!-- Gender Selection -->
                     <div class="form-group">
                         <label>Gender</label>
@@ -183,12 +123,12 @@
                
          
         <!-- Password Form -->
-        <div id="passwordForm" class="form-content">
+       <div id="passwordForm" class="form-content <%= "password".equals(activeTab) ? "active" : "" %>">
             <form action="${pageContext.request.contextPath}/updatepassword" method="post">
-            
+            <span class="displayMessage">${successPassword}</span>
                 <div class="form-grid">
                     <div class="form-group">
-                    
+                    <span class="diplayMessage">${updateSuccess}</span>
                         <label for="currentPassword">Current Password</label>
                         <input type="password" id="currentPassword" name=currentPassword value="${param.currentPass}" required>
                          <span class="error">${enteredPassError}</span>
@@ -207,13 +147,11 @@
                     </div>
                 </div>
                 
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Update Password</button>
-                </div>
+                
             </form>
         </div>
     </div>
-
+</div>
 
 <script>
 function showTab(tabName) {
