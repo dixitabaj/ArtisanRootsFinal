@@ -24,7 +24,7 @@ public class SearchService {
         List<ProductModel> products = new ArrayList<>();
 
         // SQL query to find products where the name contains the search term
-        String sql = "SELECT * FROM product WHERE product_name LIKE CONCAT('%', ?, '%')";
+        String sql = "SELECT * FROM product WHERE product_name LIKE  LOWER(CONCAT('%', ?, '%')) OR product_id LIKE CONCAT('%', ?, '%')";
         
         // Establish database connection and prepare the statement
         try (Connection con = DbConfig.getConnection();
@@ -32,6 +32,7 @@ public class SearchService {
             
             // Set the search term parameter
             ps.setString(1, searchTerm);
+            ps.setString(2, searchTerm);
             
             // Execute the query
             try (ResultSet rs = ps.executeQuery()) {

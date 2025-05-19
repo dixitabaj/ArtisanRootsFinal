@@ -9,7 +9,6 @@ import java.time.format.DateTimeParseException;
 import com.ArtisanRoots7.model.UserModel;
 import com.ArtisanRoots7.service.LoginService;
 import com.ArtisanRoots7.service.RegistrationService;
-import com.ArtisanRoots7.service.UpdateService;
 import com.ArtisanRoots7.util.ImageUtil;
 import com.ArtisanRoots7.util.PasswordUtil;
 import com.ArtisanRoots7.util.SessionUtil;

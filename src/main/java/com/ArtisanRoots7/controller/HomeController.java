@@ -5,8 +5,6 @@ import java.util.List;
 
 import com.ArtisanRoots7.model.ProductModel;
 import com.ArtisanRoots7.service.HomeService;
-import com.ArtisanRoots7.service.ProductManagementService;
-import com.ArtisanRoots7.service.SearchService;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -53,7 +51,6 @@ public class HomeController extends HttpServlet {
                     request.setAttribute("searchError", "No products found for: " + searchItem);
                 }
             } else {
-                request.setAttribute("searchError", "No Items Found");
                 recentProducts = HomeService.displayLatestFive();
             }
         } catch (Exception e) {

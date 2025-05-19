@@ -53,15 +53,7 @@ public class ProductManagementController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (searchTerm != null) {
-			// Empty search input submitted
-			request.setAttribute("searchError", "Please enter a search name");
-			try {
-				productsToDisplay = productService.display(); // Show all products
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			request.setAttribute("products", productsToDisplay);
+		
 		} else {
 			// No search parameter, display all products
 			try {
@@ -179,6 +171,26 @@ public class ProductManagementController extends HttpServlet {
 
 		return hasErrors;
 	}
+	/**
+	 * Validates if the product code already exists for adding new products.
+	 *
+	 * @param request the HttpServletRequest object
+	 * @return true if duplicate product code exists, false otherwise
+	 * @throws Exception if service layer fails
+	 */
+	public Boolean validateExistenceCode(HttpServletRequest request) throws Exception {
+		boolean hasErrors = false;
+		String productCode = request.getParameter("productCode");
+		request.setAttribute("productCode", productCode);
+		int count = ProductManagementService.getProductId(productCode);
+		if (count > 0) {
+			request.setAttribute("productCodeError", "Product code doesn't exists");
+			hasErrors = true;
+		}
+
+		return hasErrors;
+	}
+
 
 	/**
 	 * Validates if the product code exists for update/delete actions.
@@ -205,8 +217,10 @@ public class ProductManagementController extends HttpServlet {
 	 *
 	 * @param request the HttpServletRequest object
 	 * @return true if validation errors are found, false otherwise
+	 * @throws ServletException 
+	 * @throws IOException 
 	 */
-	private Boolean validateFields(HttpServletRequest request) {
+	private Boolean validateFields(HttpServletRequest request) throws IOException, ServletException {
 		boolean hasErrors = false;
 
 		String productName = request.getParameter("productName");
@@ -216,14 +230,9 @@ public class ProductManagementController extends HttpServlet {
 		String categoryName = request.getParameter("category");
 		String productStatus = request.getParameter("productStatus");
 		String productTotalSales = request.getParameter("totalSales");
-		request.setAttribute("productName", productName);
-		request.setAttribute("price", productPrice);
-		request.setAttribute("stock", stock);
-		request.setAttribute("createDate", createdDate);
-		request.setAttribute("category", categoryName);
-		request.setAttribute("productStatus", productStatus);
-		request.setAttribute("totalSales", productTotalSales);
-
+		Part imagePart = request.getPart("image");
+		
+	
 		// Check for null or empty fields
 
 		if (ValidationUtil.isNull(productName)) {
@@ -285,6 +294,17 @@ public class ProductManagementController extends HttpServlet {
 			request.setAttribute("totalSalesError", "Total sales must be a positive number");
 			hasErrors = true;
 		}
+		if (imagePart == null || imagePart.getSize() == 0) {
+	        request.setAttribute("imageError", "Image must be uploaded");
+	        hasErrors = true;
+	    }
+		request.setAttribute("productName", productName);
+		request.setAttribute("price", productPrice);
+		request.setAttribute("stock", stock);
+		request.setAttribute("createDate", createdDate);
+		request.setAttribute("category", categoryName);
+		request.setAttribute("productStatus", productStatus);
+		request.setAttribute("totalSales", productTotalSales);
 
 		return hasErrors;
 	}
@@ -328,6 +348,7 @@ public class ProductManagementController extends HttpServlet {
 		Boolean validCode = validateProductCode(request);
 		Boolean validateField = validateFields(request);
 		Boolean checkDuplicate = validateDuplicateCode(request);
+		Boolean checkExistence=validateExistenceOfId(request);
 		String productCode = request.getParameter("productCode");
 		String productName = request.getParameter("productName");
 		float productPrice = Float.parseFloat(request.getParameter("price"));
@@ -344,7 +365,7 @@ public class ProductManagementController extends HttpServlet {
 		String imageFilename = handleImageUpload(request, file);
 		ProductModel product=new ProductModel(productCode, productName, productPrice, stock, createdDate, categoryId,
 				productTotalSales, productStatus, imageFilename);
-		if (validCode || validateField || checkDuplicate) {
+		if ( validateField || validCode || !checkExistence) {
 			// Load all required data before forwarding
 			loadDataForDisplay(request);
 			request.getRequestDispatcher("WEB-INF/pages/product-management.jsp").forward(request, response);

@@ -40,9 +40,7 @@
             <p><strong>Date of Birth:</strong> <%= loggedInUser.getDob() %></p>
             <p><strong>Gender:</strong> <%= loggedInUser.getGender() %></p>
         </div>
-         <div class="form-actions">
-        <button type="submit" class="btn update-password-btn">Update Profile</button>
-    </div>
+        
     </div>
 
     <!-- Form Section -->
@@ -146,7 +144,9 @@
                     	<span class="error">${confirmPasswordError}</span>
                     </div>
                 </div>
-                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Update Password</button>
+                </div>
                 
             </form>
         </div>

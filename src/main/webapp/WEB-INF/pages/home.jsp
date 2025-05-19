@@ -153,14 +153,7 @@
     </div>
     </div>
 </c:forEach>
-
-    
-        <!-- Add more cards as needed -->
-    
       </div>
-  
-
-   
 </section>
 
 
