@@ -75,3 +75,15 @@ The system aims to create a seamless, user-friendly experience for both artisans
 Contributions are welcome!  
 Feel free to **fork** the repository and submit a **pull request**.
 
+---
+
+## License
+
+This project is **open-source** and intended for **educational use only**.  
+
+---
+
+## 👤 Author
+
+**Dixita Bajracharya**  
+
