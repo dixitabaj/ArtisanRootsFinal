@@ -6,7 +6,7 @@ The system aims to create a seamless, user-friendly experience for both artisans
 
 ---
 
-## 🎯 Key Objectives
+## Key Objectives
 
 - Empower local artisans by providing direct access to the market.
 - Eliminate the role of middlemen to ensure fair pricing.
@@ -15,21 +15,21 @@ The system aims to create a seamless, user-friendly experience for both artisans
 
 ---
 
-## ✨ Features
+## Features
 
-### 👩‍🎨 Artisan Features
+### Artisan Features
 - Artisan registration and profile creation  
 - Upload and manage handcrafted products  
 - View orders and sales history  
 - Direct customer communication  
 
-### 🛍️ Customer Features
+### Customer Features
 - Browse and search handcrafted goods  
 - View artisan profiles and product details  
 - Secure checkout and payment options  
 - Order tracking and customer dashboard  
 
-### 🔐 Admin Features
+### Admin Features
 - Approve or reject artisan profiles and products  
 - Manage users, categories, and inventory  
 - Analytics and report generation  
@@ -37,7 +37,7 @@ The system aims to create a seamless, user-friendly experience for both artisans
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Frontend**: HTML, CSS, JavaScript *(or React, Bootstrap, etc.)*  
 - **Backend**: Java (NetBeans) / PHP / Python (Django) *(specify your tech stack)*  
@@ -46,16 +46,27 @@ The system aims to create a seamless, user-friendly experience for both artisans
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
-### ✅ Prerequisites
+### Prerequisites
 - Java SDK  
 - Web server (e.g., Apache Tomcat)  
 - MySQL or compatible DBMS  
 - NetBeans or any Java-supported IDE  
 
-### ⚙️ Installation
+### Installation
 
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/your-username/ArtisanRootsFinal.git
+
+   Set up the database:
+2. **Import the provided .sql file into your MySQL database.**:
+Update database connection settings in the project.
+Run the project:
+Open the project in NetBeans.
+Build and run it on your local server.
+🤝 Contributing
+
+Contributions are welcome!
+Feel free to fork the repository and submit a pull request.
