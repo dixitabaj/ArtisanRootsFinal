@@ -60,13 +60,18 @@ The system aims to create a seamless, user-friendly experience for both artisans
    ```bash
    git clone https://github.com/your-username/ArtisanRootsFinal.git
 
-   Set up the database:
-2. **Import the provided .sql file into your MySQL database.**:
-Update database connection settings in the project.
-Run the project:
-Open the project in NetBeans.
-Build and run it on your local server.
-🤝 Contributing
+2. **Set up the database**:
+   - Import the provided `.sql` file into your MySQL database.
+   - Update the database connection settings in your project files.
 
-Contributions are welcome!
-Feel free to fork the repository and submit a pull request.
+3. **Run the project**:
+   - Open the project in NetBeans.
+   - Build and run it on your local server.
+
+---
+
+## Contributing
+
+Contributions are welcome!  
+Feel free to **fork** the repository and submit a **pull request**.
+
