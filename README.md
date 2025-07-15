@@ -83,7 +83,7 @@ This project is **open-source** and intended for **educational use only**.
 
 ---
 
-## 👤 Author
+## Author
 
 **Dixita Bajracharya**  
 
