@@ -39,10 +39,10 @@ The system aims to create a seamless, user-friendly experience for both artisans
 
 ## Technologies Used
 
-- **Frontend**: HTML, CSS, JavaScript *(or React, Bootstrap, etc.)*  
-- **Backend**: Java (NetBeans) / PHP / Python (Django) *(specify your tech stack)*  
-- **Database**: MySQL / Oracle / MongoDB *(specify actual database)*  
-- **Tools**: NetBeans IDE, Git, REST APIs *(if any)*  
+- **Frontend**: HTML, CSS, JavaScript 
+- **Backend**: Java (Eclipse)
+- **Database**: MySQL
+- **Tools**: Eclipse IDE, Git, REST APIs 
 
 ---
 
